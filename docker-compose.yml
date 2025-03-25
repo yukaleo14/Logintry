@@ -1,0 +1,28 @@
+version: '3'
+services:
+  mongo:
+    image: mongo:latest          # Imagen oficial de MongoDB
+    container_name: mongo        # Nombre del contenedor
+    ports:
+      - "27017:27017"            # Expone el puerto 27017 de MongoDB
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: leo
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongo-data:/data/db     # Volumen para persistir los datos de MongoDB
+
+  app:
+    build: .                    # Construye la imagen usando el Dockerfile
+    container_name: app         # Nombre del contenedor
+    ports:
+      - "3000:3000"             # Expone el puerto 3000 de la aplicación
+    environment:
+      DATABASE_URL: mongodb://appuser:apppassword@mongo:27017/users  # URL de conexión a MongoDB
+    volumes:
+      - .:/home/app                  # Monta el código de la aplicación en el contenedor
+    working_dir: /app            # Directorio de trabajo dentro del contenedor
+    command: npm start           # Comando para ejecutar la aplicación
+    depends_on:
+      - mongo                   # Asegura que MongoDB se inicie primero
+volumes:
+  mongo-data:                   # Define un volumen para MongoDB

@@ -1,0 +1,28 @@
+
+# PARA INICIARLO DEBES INGRESAR
+# docker compose -f docker-compose-dev.yml up
+
+version: '3.9'
+services:
+  mongo:
+    image: mongo:latest          # Imagen oficial de MongoDB
+    container_name: mongo        # Nombre del contenedor
+    ports:
+      - "27017:27017"            # Expone el puerto 27017 de MongoDB
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: leo
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongo-datas:/data/db     # Volumen para persistir los datos de MongoDB
+  appi:
+    container_name: appi
+    build: 
+      context: .
+      dockerfile: dockerfile.dev
+    ports:
+      - "3000:3000"             # Expone el puerto 3000 de la aplicación
+    volumes:
+      - .:/home/app                  # Monta el código de la aplicación en el contenedor
+volumes:
+  mongo-datas:                   # Define un volumen para MongoDB
+  

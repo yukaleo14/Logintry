@@ -1,0 +1,67 @@
+ /* Google Font Link */
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+ * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: "Poppins", sans-serif;
+ }
+
+ body {
+   min-height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background: linear-gradient(135deg, #7d2ae8, #5b13b9);
+   padding: 30px;
+ }
+
+ .home {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height: 100%;
+   text-align: center;
+   background: #fff;
+   padding: 40px;
+   border-radius: 15px;
+   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+ }
+
+ .home .title {
+   font-size: 28px;
+   font-weight: 700;
+   color: #000000;
+   margin-bottom: 20px;
+   padding: 10px 20px;
+   border: 2px solid #7d2ae8;
+   border-radius: 10px;
+   background: #f3f3f3;
+   box-shadow: 0 3px 10px rgba(125, 42, 232, 0.2);
+ }
+
+ .home .options {
+   display: flex;
+   gap: 20px;
+ }
+
+ .home .options button {
+   background: #7d2ae8;
+   color: #fff;
+   padding: 15px 30px;
+   border: none;
+   border-radius: 50px;
+   cursor: pointer;
+   font-size: 18px;
+   font-weight: 600;
+   transition: all 0.3s ease;
+   box-shadow: 0 3px 10px rgba(125, 42, 232, 0.3);
+ }
+
+ .home .options button:hover {
+   background: #5b13b9;
+   transform: scale(1.05);
+   box-shadow: 0 5px 15px rgba(91, 19, 185, 0.4);
+ }
