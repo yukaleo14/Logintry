@@ -30,8 +30,10 @@
           <div class="login-form">
             <div class="title">Login</div>
             <% if (messages.error) { %>
-              <%= messages.error %>
-              <% } %>
+              <div class="alert alert-danger">
+                <%= messages.error %>
+              </div>
+            <% } %>
           <form action="/users/login" method="POST">
             <div class="input-boxes">
               <div class="input-box">
