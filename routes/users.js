@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../model/user-model')
-const passport = require('passport');
+const passport = require('../passport-config');
 const bcrypt = require('bcryptjs');
+const methodOverride = require('method-override');
+
+router.use(methodOverride('_method'))
+
 
 router.get('/', checkNotAuthenticated, function (req, res) {
     res.render('index.ejs')
@@ -53,8 +57,12 @@ router.post('/login', checkNotAuthenticated, passport.authenticate('local', {
 
 
 router.delete('/logout', (req, res) => {
-    req.logOut()
-    res.redirect('/users/login');
+    req.logout((err) => {
+        if (err) {
+            console.error('Error al cerrar sesión:', err);
+        }
+        res.redirect('/users/login');
+    });
 });
 
 function checkAuthenticated(req, res, next) {
@@ -72,7 +80,5 @@ if (req.isAuthenticated()){
 
 next()
 }
-
-
 
 module.exports = router;
