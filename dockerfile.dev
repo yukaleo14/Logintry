@@ -5,6 +5,16 @@ RUN mkdir -p /home/app
 
 WORKDIR /home/app
 
+# Copiar package.json y package-lock.json
+COPY package*.json ./
+
+# Instalar dependencias
+RUN npm install
+
+# Copiar el resto del código
+COPY . .
+
 EXPOSE 3000
 
-CMD ["nodemon", "server.js"]
+# Configuración de nodemon para observar cambios
+CMD ["nodemon", "--legacy-watch", "--watch", ".", "server.js"]
